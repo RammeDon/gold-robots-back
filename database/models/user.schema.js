@@ -40,9 +40,9 @@ const userSchema = mongoose.Schema({
     },
     language: {
         type: String,
-        default: "English"
+        default: "english"
     }
 
-}, { collection: 'user' });
+}, { collection: 'users' });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Users', userSchema);
