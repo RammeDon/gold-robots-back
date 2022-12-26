@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
     title: {
-        type: String,
+        type: Number,
         required:true
     },
     username: {
@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
         default: false
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     email: {
@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     country: {
-        type: String,
+        type: Number,
         require: true
     },
     language: {
