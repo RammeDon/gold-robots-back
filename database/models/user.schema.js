@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
+    userID: {
+        type: String,
+        default: ""
+    },
     title: {
         type: Number,
         required:true
@@ -64,7 +68,6 @@ const userSchema = mongoose.Schema({
     },
     profilePictureID: {
         type: String
-
     }
 
 }, { collection: 'users' });

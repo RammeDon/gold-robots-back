@@ -4,12 +4,17 @@ const app = express();
 const DATABASE = require('./database/connect')
 const path = require('path')
 const PORT = process.env.PORT || 3000
-const API = require('./api/router.js')
+const ACCOUNT = require('./api/accountRouter.js')
+const USER = require('./api/userRouter.js')
+const IMAGE = require('./api/imageRouter.js')
 
 
 app.use(express.json()) // middleware
 app.use('/', express.static(path.resolve(__dirname, '..', '..', 'production/')))
-app.use("/api", API)  // api routes
+
+// api routes
+app.use("/api/accounts", ACCOUNT)
+app.use("/api/users", USER)
 
 DATABASE.connect()
     .then(() => console.log("You have been successfully connected to the Database!"))
