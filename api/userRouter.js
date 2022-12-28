@@ -41,8 +41,6 @@ ROUTER.post('/', async (req, res) => {
             contractID: req.body.contractID,
             personalSettings: req.body.personalSettings,
             profilePictureID: req.body.profilePictureID
-
-
         });
 
         const foundUser = await User.findOne({ _id: req.body.id });
