@@ -5,6 +5,7 @@ const DATABASE = require('./database/connect')
 const path = require('path')
 const PORT = process.env.PORT || 3000
 const API = require('./api/router.js')
+const multer = require('multer')
 
 app.use(express.json()) // middleware
 app.use('/', express.static(path.resolve(__dirname, '..', '..', 'production/')))

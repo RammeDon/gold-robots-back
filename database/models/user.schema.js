@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    birthDay: {
+        type: String,
+        required: true
+    },
     admin: {
         type: Boolean,
         default: false
@@ -41,6 +45,27 @@ const userSchema = mongoose.Schema({
     language: {
         type: String,
         default: "english"
+    },
+    accountID: {
+        type: String,
+        default: "No Account Yet"
+    },
+    openAccountDate: {
+        type: Date,
+        default: Date.now
+    },
+    contractID: {
+        type: String,
+        default: "No Contracts Yet"
+    },
+    personalSettings: {
+        type: Object,
+        default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
+    },
+    profilePicture: {
+        data: Buffer,
+        contentTpye: String
+
     }
 
 }, { collection: 'users' });
