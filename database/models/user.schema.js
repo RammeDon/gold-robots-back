@@ -62,9 +62,8 @@ const userSchema = mongoose.Schema({
         type: Object,
         default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
     },
-    profilePicture: {
-        data: Buffer,
-        contentTpye: String
+    profilePictureID: {
+        type: String
 
     }
 
