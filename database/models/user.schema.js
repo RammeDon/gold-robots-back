@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-    title: {
+    userID: {
         type: String,
+        default: ""
+    },
+    title: {
+        type: Number,
         required:true
     },
     username: {
@@ -22,12 +26,12 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    admin: {
-        type: Boolean,
-        default: false
+    birthDay: {
+        type: String,
+        required: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     email: {
@@ -35,14 +39,34 @@ const userSchema = mongoose.Schema({
         required: true
     },
     country: {
-        type: String,
+        type: Number,
         require: true
     },
     language: {
         type: String,
-        default: "English"
+        default: "english"
+    },
+    accountID: {
+        type: String,
+        default: "No Account Yet"
+    },
+    openAccountDate: {
+        type: Date,
+        default: Date.now
+    },
+    contractID: {
+        type: String,
+        default: "No Contracts Yet"
+    },
+    personalSettings: {
+        type: Object,
+        default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
+    },
+    profilePictureID: {
+        type: String,
+        default: "No photo"
     }
 
-}, { collection: 'user' });
+}, { collection: 'users' });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Users', userSchema);
