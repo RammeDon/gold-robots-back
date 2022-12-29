@@ -16,6 +16,22 @@ ROUTER.get('/', async (_, res) => {
 });
 
 
+// get an payment history
+ROUTER.get("/:id", async (req, res) => {
+
+    try {
+      const paymentHistory = await PaymentHistory.findOne({ _id: req.params.id });
+      if (!paymentHistory) throw new Error("The id does not have a paymentHistory");
+  
+      res.send(paymentHistory);
+  
+    } catch (err) {
+      res.status(404);
+    }
+  
+});
+
+
 // Create new paymentHistory
 ROUTER.post('/', async (req, res) => {
     try {

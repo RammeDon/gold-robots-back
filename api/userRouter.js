@@ -17,6 +17,21 @@ ROUTER.get('/', async (_, res) => {
     }
     res.send(data)
 });
+
+// get a user
+ROUTER.get("/:id", async (req, res) => {
+
+    try {
+      const user = await User.findOne({ userID: req.params.id });
+      if (!user) throw new Error("The id does not have a user object");
+  
+      res.send(user);
+  
+    } catch (err) {
+      res.status(404);
+    }
+  
+  });
   
 // Create new User
 ROUTER.post('/', async (req, res) => {
@@ -32,7 +47,6 @@ ROUTER.post('/', async (req, res) => {
             lastname: req.body.lastname,
             password: hashPssword,
             birthDay: req.body.birthDay,
-            admin: req.body.admin,
             phone: req.body.phone,
             email: req.body.email,
             country: req.body.country,
@@ -80,16 +94,22 @@ ROUTER.put("/:id", async (req, res) => {
         if (!user) {
             throw new Error("User does not exist");
         }
+
         user.title = req.body.title,
-            user.username =  req.body.username,
+            user.userID = req.body.userID,
+            user.username = req.body.username,
             user.firstname = req.body.firstname,
             user.lastname = req.body.lastname,
             user.password = hashPssword,
-            user.admin = req.body.admin,
+            user.birthDay = req.body.birthDay,
             user.phone = req.body.phone,
             user.email = req.body.email,
             user.country = req.body.country,
-            user.language= req.body.language
+            user.language = req.body.language,
+            user.accoutID = req.body.accountID,
+            user.contractID = req.body.contractID,
+            user.personalSettings = req.body.personalSettings,
+            user.profilePictureID = req.body.profilePictureID
 
             await user.save();
         

@@ -13,13 +13,13 @@ const accountSchema = mongoose.Schema({
 
     },
     swiftCode: {
-        type: String
+        type: [String]
     },
     country: {
-        type: Number
+        type: [Number]
     },
     currency: {
-        type: Number
+        type: [Number]
     },
     balance: {
         type: Number,

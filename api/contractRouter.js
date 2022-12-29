@@ -6,7 +6,7 @@ const Contract = require(`${dbPath}/contract.schema.js`)
 // /api/contracts
 
 
-// get all users
+// get all contracts
 ROUTER.get('/', async (_, res) => {
     let data = await Contract.find()
     if (!data) {
@@ -18,7 +18,22 @@ ROUTER.get('/', async (_, res) => {
 });
 
 
-// Create new User
+// get a contract
+ROUTER.get("/:id", async (req, res) => {
+    try {
+      const contract = await Contract.findOne({ _id: req.params.id });
+      if (!contract) throw new Error("The id does not have a contract object");
+  
+      res.send(contract);
+  
+    } catch (err) {
+      res.status(404);
+    }
+  
+  });
+
+
+// Create new contract
 ROUTER.post('/', async (req, res) => {
     try {
         const contract = new Contract({
@@ -69,7 +84,7 @@ ROUTER.put("/:id", async (req, res) => {
     }
 });
 
-// delete contract
+// delete a contract
 ROUTER.delete("/:id", async (req, res) => {
     try {
       const contract = await Contract.findOne({ _id: req.params.id });

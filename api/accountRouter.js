@@ -17,6 +17,21 @@ ROUTER.get('/', async (_, res) => {
 });
 
 
+// get an account
+ROUTER.get("/:id", async (req, res) => {
+    try {
+      const account = await Account.findOne({ _id: req.params.id });
+      if (!account) throw new Error("The id does not have a account object");
+  
+      res.send(account);
+  
+    } catch (err) {
+      res.status(404);
+    }
+  
+  });
+
+
 // create new account
 ROUTER.post('/', async (req, res) => {
     try {
