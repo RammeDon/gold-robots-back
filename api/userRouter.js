@@ -57,7 +57,7 @@ ROUTER.post('/', async (req, res) => {
             profilePictureID: req.body.profilePictureID
         });
 
-        const foundUser = await User.findOne({ _id: req.body.id });
+        const foundUser = await User.findOne({ username: req.body.username });
         if (foundUser) throw new Error("User already exists");
         const newUser = await user.save();
         res.status(201).json({ newUser });
