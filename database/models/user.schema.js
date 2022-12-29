@@ -63,7 +63,8 @@ const userSchema = mongoose.Schema({
         default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
     },
     profilePictureID: {
-        type: String
+        type: String,
+        default: "No photo"
     }
 
 }, { collection: 'users' });
