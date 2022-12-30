@@ -34,7 +34,7 @@ ROUTER.post('/login', async (req, res) => {
         return res.status(400).json({ error: 'Invalid password!' })
     };
 
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+    const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET);
     res.header('token', token).json({ token });
 
     console.log('Login Complete!');

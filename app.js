@@ -18,6 +18,7 @@ app.use(
       const allowedOrigins = [
         "http://localhost:3000",
         "http://localhost:3001",
+        "http://localhost:3500",
         "https://www.bulima.co",
       ];
       if (!origin) return callback(null, true);
