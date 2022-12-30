@@ -12,7 +12,27 @@ const ADMIN = require("./api/adminRouter.js");
 const PAYMENTHISTORY = require("./api/paymentHistoryRouter.js");
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://www.bulima.co",
+      ];
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        return callback(
+          new Error(
+            `The CORS policy of this site does not allow access form specified origin.${origin}`,
+            false
+          )
+        );
+      }
+      return callback(null, true);
+    },
+  })
+);
 app.use(express.json()); // middleware
 app.use(
   "/",
