@@ -2,6 +2,7 @@ const express = require('express');
 const ROUTER = express.Router();
 const dbPath = '../database/models';
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const User = require(`${dbPath}/user.schema.js`)
 // /api/users
@@ -17,6 +18,28 @@ ROUTER.get('/', async (_, res) => {
     }
     res.send(data)
 });
+
+
+// login validator
+ROUTER.post('/login', async (req, res) => {
+    console.log('Logging in...');
+    const user = await User.findOne({ username: req.body.username });
+
+    if (!user) {
+        return res.status(400).json({ error: 'Username not found!' });
+    };
+
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!validPassword) {
+        return res.status(400).json({ error: 'Invalid password!' })
+    };
+
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+    res.header('token', token).json({ token });
+
+    console.log('Login Complete!');
+});
+
 
 // get a user
 ROUTER.get("/:id", async (req, res) => {
@@ -132,7 +155,7 @@ ROUTER.delete("/:id", async (req, res) => {
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
-  })
+})
 
 module.exports = ROUTER;
   
