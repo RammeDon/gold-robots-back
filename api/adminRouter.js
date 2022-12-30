@@ -12,8 +12,9 @@ ROUTER.post('/', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashPssword = await bcrypt.hash(req.body.password, salt);
         const admin = new Admin({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            adminID: req.body.adminID,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
             email: req.body.email,
             password: hashPssword
         });
@@ -26,6 +27,28 @@ ROUTER.post('/', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
+
+
+// login validator
+ROUTER.post('/login', async (req, res) => {
+  console.log('Logging in...');
+  const admin = await Admin.findOne({ username: req.body.username });
+
+  if (!admin) {
+      return res.status(400).json({ error: 'Admin not found!' });
+  };
+
+  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  if (!validPassword) {
+      return res.status(400).json({ error: 'Invalid password!' })
+  };
+
+  const token = jwt.sign({ _id: admin._id }, process.env.ACCESS_TOKEN_SECRET);
+  res.header('token', token).json({ token });
+
+  console.log('Login Complete!');
+});
+
 
 
 // delete admin
