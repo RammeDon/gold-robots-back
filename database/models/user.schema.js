@@ -55,12 +55,8 @@ const userSchema = mongoose.Schema({
         default: Date.now
     },
     contractID: {
-        type: String,
+        type: [String],
         default: "No Contracts Yet"
-    },
-    personalSettings: {
-        type: Object,
-        default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
     },
     profilePictureID: {
         type: String,

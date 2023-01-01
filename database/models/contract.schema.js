@@ -31,6 +31,10 @@ const contractSchema = mongoose.Schema({
     },
     adminClient: {
         type: String
+    },
+    personalSettings: {
+        type: Object,
+        default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
     }
 }, {collection: "contracts"});
 

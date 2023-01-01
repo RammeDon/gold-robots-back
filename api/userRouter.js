@@ -42,10 +42,10 @@ ROUTER.post('/login', async (req, res) => {
 
 
 // get a user
-ROUTER.get("/:id", async (req, res) => {
+ROUTER.get("/:username", async (req, res) => {
 
     try {
-      const user = await User.findOne({ userID: req.params.id });
+      const user = await User.findOne({ username: req.params.username });
       if (!user) throw new Error("The id does not have a user object");
   
       res.send(user);
@@ -76,7 +76,6 @@ ROUTER.post('/', async (req, res) => {
             language: req.body.language,
             accoutID: req.body.accountID,
             contractID: req.body.contractID,
-            personalSettings: req.body.personalSettings,
             profilePictureID: req.body.profilePictureID
         });
 
@@ -91,13 +90,13 @@ ROUTER.post('/', async (req, res) => {
 
 
 // update a users password
-ROUTER.put("/:id", async (req, res) => {
+ROUTER.put("/:username", async (req, res) => {
     try {
         // Hash Password
         const salt = await bcrypt.genSalt(10);
         const hashPssword = await bcrypt.hash(req.body.password, salt);
 
-        const user = await User.findOne({ _id: req.params.id });
+        const user = await User.findOne({ username: req.params.username });
         if (!user) {
             throw new Error("User does not exist");
         }
@@ -131,7 +130,6 @@ ROUTER.put("/:id", async (req, res) => {
             user.language = req.body.language,
             user.accoutID = req.body.accountID,
             user.contractID = req.body.contractID,
-            user.personalSettings = req.body.personalSettings,
             user.profilePictureID = req.body.profilePictureID
 
             await user.save();

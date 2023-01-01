@@ -45,7 +45,8 @@ ROUTER.post('/', async (req, res) => {
             minProfit: req.body.minProfit,
             profitSharing: req.body.profitSharing,
             maxTradeDays: req.body.maxTradeDays,
-            adminClient: req.body.adminClient
+            adminClient: req.body.adminClient,
+            personalSettings: req.body.personalSettings
         });
 
         const foundContract = await Contract.findOne({ _id: req.body.id });
@@ -62,19 +63,19 @@ ROUTER.post('/', async (req, res) => {
 ROUTER.put("/:id", async (req, res) => {
     try {
         const contract = await Contract.findOne({ _id: req.params.id });
-        if (!user) {
+        if (!contract) {
             throw new Error("contract does not exist");
         }
-        contract.title = req.body.title,
-            contract.username =  req.body.username,
-            contract.firstname = req.body.firstname,
-            contract.lastname = req.body.lastname,
-            contract.password = hashPssword,
-            contract.admin = req.body.admin,
-            contract.phone = req.body.phone,
-            contract.email = req.body.email,
-            contract.country = req.body.country,
-            contract.language= req.body.language
+        contract.userID = req.body.userID,
+            contract.contractType =  req.body.contractType,
+            contract.depositeAmmount = req.body.depositeAmmount,
+            contract.startDate = req.body.startDate,
+            contract.duration = req.body.duration,
+            contract.minProfit = req.body.minProfit,
+            contract.profitSharing = req.body.profitSharing,
+            contract.maxTradeDays = req.body.maxTradeDays,
+            contract.adminClient = req.body.adminClient,
+            contract.personalSettings = req.body.personalSettings
 
             await contract.save();
         
