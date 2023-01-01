@@ -38,6 +38,7 @@ ROUTER.post('/', async (req, res) => {
     try {
         const contract = new Contract({
             userID: req.body.userID,
+            investmentAmount: req.body.investmentAmount,
             contractType: req.body.contractType,
             depositeAmmount: req.body.depositeAmmount,
             startDate: req.body.startDate,
@@ -67,6 +68,7 @@ ROUTER.put("/:id", async (req, res) => {
             throw new Error("contract does not exist");
         }
         contract.userID = req.body.userID,
+            contract.investmentAmount = req.body.investmentAmount,
             contract.contractType =  req.body.contractType,
             contract.depositeAmmount = req.body.depositeAmmount,
             contract.startDate = req.body.startDate,

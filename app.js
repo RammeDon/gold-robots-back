@@ -44,6 +44,7 @@ app.use(
 app.use("/api/paymenthistories", PAYMENTHISTORY);
 app.use("/api/contracts", CONTRACT);
 app.use("/api/accounts", ACCOUNT);
+app.use("/api/images", IMAGE);
 app.use("/api/admins", ADMIN);
 app.use("/api/users", USER);
 

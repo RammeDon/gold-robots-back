@@ -24,7 +24,7 @@ ROUTER.post('/image', (req, res)=> {
         if (err) {console.log(err)}
         else {
             const newImage = new Image({
-                userID: req.body.userID,
+                username: req.body.username,
                 image: {
                     data: req.file.filename,
                     contentType: 'image/png'

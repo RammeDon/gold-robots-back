@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.set("strictQuery", false)
 
 const imageSchema = mongoose.Schema({
-    userID: {
+    username: {
         type : String,
         required: true
     },

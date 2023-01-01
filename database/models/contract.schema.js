@@ -5,6 +5,10 @@ const contractSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    investmentAmount: {
+        type: String,
+        default: "0"
+    },
     contractType: {
         type: String,
         required : true
