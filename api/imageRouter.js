@@ -35,6 +35,22 @@ ROUTER.get("/", async (req, res) => {
 })
 
 
+ROUTER.get("/:username", async (req, res) => {
+    
+
+    try {
+        const image = await Image.findOne({ username: req.params.username });
+        if (!image) throw new Error("The id does not have a user object");
+
+        res.json(image)
+
+    } catch (err) {
+        res.status(404);
+    }
+})
+
+
+
 ROUTER.post('/', upload.single('testImage'), (req, res) => {
     const saveImage = new Image({
         username: req.body.username,
