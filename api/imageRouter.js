@@ -28,7 +28,11 @@ const Storage = multer.diskStorage({
 const upload = multer({ storage: Storage })
 
 
-ROUTER.get("/", (req, res) => res.send("this is working fine"))
+ROUTER.get("/", async (req, res) => {
+    const allImages = await Image.find()
+
+    res.json(allImages)
+})
 
 
 ROUTER.post('/', upload.single('testImage'), (req, res) => {
