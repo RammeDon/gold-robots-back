@@ -3,6 +3,7 @@ const ROUTER = express.Router();
 const dbPath = '../database/models';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const decoder = require('jwt-decode');
 
 const User = require(`${dbPath}/user.schema.js`)
 // /api/users
@@ -34,11 +35,23 @@ ROUTER.post('/login', async (req, res) => {
         return res.status(400).json({ error: 'Invalid password!' })
     };
 
-    const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET);
+    const token = jwt.sign({ username: user.username }, process.env.ACCESS_TOKEN_SECRET);
     res.header('token', token).json({ token });
 
     console.log('Login Complete!');
 });
+
+
+// ROUTER.get("/verifyToken", async (req, res) => {
+
+//     console.log("decoding token...")
+
+//     const tokenPayload = jwt.decode(req.header('token'), process.env.ACCESS_TOKEN_SECRET)
+    
+
+//     res.send(tokenPayload)
+
+// })
 
 
 // get a user
