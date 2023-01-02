@@ -12,6 +12,8 @@ const ADMIN = require("./api/adminRouter.js");
 const PAYMENTHISTORY = require("./api/paymentHistoryRouter.js");
 const cors = require("cors");
 
+
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -20,6 +22,7 @@ app.use(
         "http://localhost:3001",
         "http://localhost:3500",
         "https://www.bulima.co",
+        // "*"
       ];
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
@@ -34,6 +37,15 @@ app.use(
     },
   })
 );
+
+app.use(
+  function(res, _, next) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
+      next();
+  }
+)
 app.use(express.json()); // middleware
 app.use(
   "/",

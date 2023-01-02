@@ -1,25 +1,30 @@
 const mongoose = require('mongoose');
 
 const accountSchema = mongoose.Schema({
-    userID: {
+    username: {
         type: String
     },
     bankNames: {
         type: [String],
+        default: []
 
     },
     accountNumbers: {
-        type: [String]
+        type: [String],
+        default: []
 
     },
     swiftCode: {
-        type: [String]
+        type: [String],
+        default: []
     },
     country: {
-        type: [Number]
+        type: [Number],
+        default: []
     },
     currency: {
-        type: [Number]
+        type: [Number],
+        default: []
     },
     balance: {
         type: Number,

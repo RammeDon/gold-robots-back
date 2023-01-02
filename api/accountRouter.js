@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 
 const Account = require(`${dbPath}/account.schema.js`)
 
+
 // get all accounts
 ROUTER.get('/', async (_, res) => {
     let data = await Account.find()
@@ -18,17 +19,19 @@ ROUTER.get('/', async (_, res) => {
 
 
 // get an account
-ROUTER.get("/:id", async (req, res) => {
+ROUTER.get("/:username", async (req, res) => {
     try {
-      const account = await Account.findOne({ _id: req.params.id });
+      const account = await Account.findOne({ username: req.params.username });
       if (!account) throw new Error("The id does not have a account object");
-  
-      res.send(account);
-  
+
+    //   res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    //   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    //   res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        // console.log(account)
+        res.send(account);
     } catch (err) {
       res.status(404);
     }
-  
   });
 
 
@@ -36,7 +39,7 @@ ROUTER.get("/:id", async (req, res) => {
 ROUTER.post('/', async (req, res) => {
     try {
         const account = new Account({
-            userID: req.body.userID,
+            username: req.body.username,
             bankNames: req.body.bankNames,
             accountNumbers: req.body.accountNumbers,
             swiftCode: req.body.swiftCode,
@@ -51,7 +54,7 @@ ROUTER.post('/', async (req, res) => {
             percentageInTrades: req.body.percentageInTrades
         });
 
-        const foundAccount = await Account.findOne({ _id: req.body.id });
+        const foundAccount = await Account.findOne({ username: req.body.username });
         if (foundAccount) throw new Error("Account already exists");
         const newAccount = await account.save();
         res.status(201).json({ newAccount });
@@ -62,13 +65,13 @@ ROUTER.post('/', async (req, res) => {
 
 
 // update an account
-ROUTER.put("/:id", async (req, res) => {
+ROUTER.put("/:username", async (req, res) => {
     try {
-        const account = await Account.findOne({ _id: req.params.id });
+        const account = await Account.findOne({ username: req.params.username });
         if (!account) {
             throw new Error("Account does not exist");
         }
-        account.userID = req.body.userID,
+        account.username = req.body.username,
             account.bankNames =  req.body.bankNames,
             account.accountNumbers = req.body.accountNumbers,
             account.swiftCode = req.body.swiftCode,
@@ -92,12 +95,12 @@ ROUTER.put("/:id", async (req, res) => {
 
 
 // delete account
-ROUTER.delete("/:id", async (req, res) => {
+ROUTER.delete("/:username", async (req, res) => {
     try {
-      const account = await Account.findOne({ _id: req.params.id });
+      const account = await Account.findOne({ username: req.params.username });
       if (!account) throw new Error("account does not exist")
   
-      await Account.deleteOne({ _id: req.params.id })
+      await Account.deleteOne({ username: req.params.username })
       res.status(204).send();
       
     } catch (err) {
