@@ -37,7 +37,7 @@ ROUTER.get("/:id", async (req, res) => {
 ROUTER.post('/', async (req, res) => {
     try {
         const contract = new Contract({
-            userID: req.body.userID,
+            username: req.body.username,
             investmentAmount: req.body.investmentAmount,
             contractType: req.body.contractType,
             depositeAmmount: req.body.depositeAmmount,
@@ -67,7 +67,7 @@ ROUTER.put("/:id", async (req, res) => {
         if (!contract) {
             throw new Error("contract does not exist");
         }
-        contract.userID = req.body.userID,
+        contract.username = req.body.username,
             contract.investmentAmount = req.body.investmentAmount,
             contract.contractType =  req.body.contractType,
             contract.depositeAmmount = req.body.depositeAmmount,

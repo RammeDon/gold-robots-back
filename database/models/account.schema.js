@@ -7,7 +7,6 @@ const accountSchema = mongoose.Schema({
     bankNames: {
         type: [String],
         default: []
-
     },
     accountNumbers: {
         type: [String],
@@ -46,13 +45,28 @@ const accountSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    newTrades: {
+        type: Number
+    },
     todayMoney: {
+        type: Number,
+        default: 0
+    },
+    days: {
         type: Number,
         default: 0
     },
     percentageInTrades: {
         type: Number,
         default: 0
+    },
+    balanceOverView: {
+        type: [Number],
+        default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    activeTrades: {
+        type: [Object],
+        default: [{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0}]
     }
 }, { collection: 'accounts' })
 

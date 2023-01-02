@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const contractSchema = mongoose.Schema({
-    userID: {
+    username: {
         type: String,
         required: true
     },
@@ -14,24 +14,32 @@ const contractSchema = mongoose.Schema({
         required : true
     },
     depositeAmmount: {
-        type: String,
-        default: "0"
+        type: Number,
+        default: 0
+    },
+    minDeposite:{
+        type: Number,
+        default: 0
     },
     startDate: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: ""
     },
     duration: {
-        type: String
+        type: Number,
+        default: 0
     },
     minProfit: {
-        type: String
+        type: Number,
+        default: 0
     },
     profitSharing: {
-        type: String
+        type: Number,
+        default: 0
     },
     maxTradeDays: {
-        type: String
+        type: Number,
+        default: 0
     },
     adminClient: {
         type: String
