@@ -36,7 +36,7 @@ ROUTER.get("/:id", async (req, res) => {
 ROUTER.post('/', async (req, res) => {
     try {
         const paymentHistory = new PaymentHistory({
-            userID: req.body.userID,
+            username: req.body.username,
             accountID: req.body.accountID,
             date: req.body.date,
             ammount: req.body.ammount,
@@ -61,7 +61,7 @@ ROUTER.put("/:id", async (req, res) => {
         if (!user) {
             throw new Error("payment History does not exist");
         }
-        paymentHistory.title = req.body.userID,
+        paymentHistory.username = req.body.username,
             paymentHistory.accountID =  req.body.accountID,
             paymentHistory.date = req.body.date,
             paymentHistory.ammount = req.body.ammount,

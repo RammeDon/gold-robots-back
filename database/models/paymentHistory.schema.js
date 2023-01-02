@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const paymentHistorySchema = mongoose.Schema({
-    userID: {
+    username: {
         type: String,
         required: true
     },

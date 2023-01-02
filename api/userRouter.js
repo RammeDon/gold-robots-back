@@ -42,18 +42,6 @@ ROUTER.post('/login', async (req, res) => {
 });
 
 
-// ROUTER.get("/verifyToken", async (req, res) => {
-
-//     console.log("decoding token...")
-
-//     const tokenPayload = jwt.decode(req.header('token'), process.env.ACCESS_TOKEN_SECRET)
-    
-
-//     res.send(tokenPayload)
-
-// })
-
-
 // get a user
 ROUTER.get("/:username", async (req, res) => {
 
