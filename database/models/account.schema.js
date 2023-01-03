@@ -64,9 +64,13 @@ const accountSchema = mongoose.Schema({
         type: [Number],
         default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
-    activeTrades: {
-        type: [Object],
-        default: [{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0},{thisWeek: 0, lastweek: 0}]
+    activeTradesToday: {
+        type: [Number],
+        default: [0, 0, 0, 0, 0, 0, 0]
+    },
+    activeTradesLastWeek: {
+        type: [Number],
+        default: [0, 0, 0, 0, 0, 0, 0]
     }
 }, { collection: 'accounts' })
 

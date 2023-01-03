@@ -7,8 +7,8 @@ const Contract = require(`${dbPath}/contract.schema.js`)
 
 
 // get all contracts
-ROUTER.get('/', async (_, res) => {
-    let data = await Contract.find()
+ROUTER.get('/:id', async (req, res) => {
+    let data = await Contract.find({username:req.params.id})
     if (!data) {
         res.status(400).json(
             { message: `Error: No contracts in database.` }
@@ -18,19 +18,31 @@ ROUTER.get('/', async (_, res) => {
 });
 
 
-// get a contract
-ROUTER.get("/:id", async (req, res) => {
-    try {
-      const contract = await Contract.findOne({ _id: req.params.id });
-      if (!contract) throw new Error("The id does not have a contract object");
+// // get a contract
+// ROUTER.get("/:id", async (req, res) => {
+//     try {
+//       const contract = await Contract.findOne({ username: req.params.id });
+//       if (!contract) throw new Error("The id does not have a contract object");
   
-      res.send(contract);
+//       res.send(contract);
   
-    } catch (err) {
-      res.status(404);
+//     } catch (err) {
+//       res.status(404);
+//     }
+  
+//   });
+
+
+// get all contracts
+ROUTER.get('/', async (_, res) => {
+    let data = await Contract.find()
+    if (!data) {
+        res.status(400).json(
+            { message: `Error: No contracts in database.` }
+        )
     }
-  
-  });
+    res.send(data)
+});
 
 
 // Create new contract
