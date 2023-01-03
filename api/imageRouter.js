@@ -16,16 +16,45 @@ const Image = require(`${dbPath}/image.schema.js`)
 // }) 
 
 
-const Storage = multer.diskStorage({
+
+function between(min, max) {
+    return Math.floor(
+        Math.random() * (max - min + 1) + min
+    )
+}
+
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads")
+        cb(null, "../gold-robots-front/public/uploads")
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname)
+        // const randomNumber = between(10, 200);
+        const newFilename = file.originalname
+        cb(null, newFilename);
     }
-})
+});
 
-const upload = multer({ storage: Storage })
+const upload = multer({ storage }).any();
+
+
+// const Storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         const fs = require('fs')
+//         const filesDir = `./../../../gold-robots-front/public/uploads`;
+        
+//         // check if directory exists
+//         if (!fs.existsSync(filesDir)) {
+//         // if not create directory
+//             fs.mkdirSync(filesDir);
+        
+//         }
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.originalname)
+//     }
+// })
+
+// const upload = multer({ storage: Storage })
 
 
 ROUTER.get("/", async (req, res) => {
@@ -51,14 +80,13 @@ ROUTER.get("/:username", async (req, res) => {
 
 
 
-ROUTER.post('/', upload.single('testImage'), (req, res) => {
+ROUTER.post('/', upload, (req, res) => {
     const saveImage = new Image({
         username: req.body.username,
-        image: {
-            data: fs.readFileSync('uploads/' + req.file.filename),
-            contentType: "image/png"
-        }
+        file: req.body.file
     })
+
+    // console.log(saveImage)
 
     saveImage
         .save()
