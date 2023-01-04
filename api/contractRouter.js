@@ -80,14 +80,28 @@ ROUTER.post('/', async (req, res) => {
 
 
 // update a contract
-ROUTER.put("/:id", async (req, res) => {
+ROUTER.put("/:username/:name", async (req, res) => {
     try {
-        const contract = await Contract.findOne({ _id: req.params.id });
+        const contract = await Contract.findOne({ username: req.params.username, name: req.params.name });
         if (!contract) {
             throw new Error("contract does not exist");
         }
-            contract.personalSettings = req.body.personalSettings
-
+        contract.ammount =  req.body.ammount,
+            contract.color = req.body.color,
+            contract.date = req.body.date,
+            contract.garantiePrecent = req.body.garantiePrecent,
+            contract.level=  req.body.level,
+            contract.maxTradeDays = req.body.maxTradeDays,
+            contract.maxTradeDays = req.body.maxTradeDays,
+            contract.minDuration = req.body.minDuration,
+            contract.profitSharing = req.body.profitSharing,
+            contract.adminClients = req.body.adminClients,
+            contract.profitSharing = req.body.profitSharing,
+            contract.extraDays = req.body.extraDays,
+            contract.timeframe = req.body.timeframe,
+            contract.leverage = req.body.leverage,
+            contract.timerange = req.body.timerange,
+            contract.maxUsage = req.body.maxUsage
             await contract.save();
         
         res.send(contract);
