@@ -54,15 +54,15 @@ const contractSchema = mongoose.Schema({
         default: 0
     },
     extraDays: {
-        type: Number,
+        type: String,
         default: 0
     },
     timeframe: {
-        type: Number,
+        type: String,
         default: 0
     },
     leverage: {
-        type: Number,
+        type: String,
         default: 0
     },
     timerange: {
