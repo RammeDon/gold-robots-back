@@ -52,6 +52,26 @@ const contractSchema = mongoose.Schema({
     profitSharing: {
         type: Number,
         default: 0
+    },
+    extraDays: {
+        type: Number,
+        default: 0
+    },
+    timeframe: {
+        type: Number,
+        default: 0
+    },
+    leverage: {
+        type: Number,
+        default: 0
+    },
+    timerange: {
+        type: Number,
+        default: 0
+    },
+    maxUsage: {
+        string: Number,
+        default: 0
     }
 }, {collection: "contracts"});
 

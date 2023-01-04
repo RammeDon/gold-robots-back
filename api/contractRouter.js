@@ -60,7 +60,13 @@ ROUTER.post('/', async (req, res) => {
             name: req.body.name,
             minDuration: req.body.minDuration,
             minDeposite: req.body.profitSharing,
-            adminClients: req.body.adminClients
+            adminClients: req.body.adminClients,
+            profitSharing: req.body.profitSharing,
+            extraDays: req.body.extraDays,
+            timeframe: req.body.timeframe,
+            leverage: req.body.leverage,
+            timerange: req.body.timerange,
+            maxUsage: req.body.maxUsage
         });
 
         const foundContract = await Contract.findOne({ _id: req.body.id });
