@@ -78,7 +78,7 @@ ROUTER.put("/:username", async (req, res) => {
       name: req.body.name,
     });
     if (!contract) {
-      throw new Error(`contract does not exist ${req.params.username} ${req.body.name}`, {
+      throw new Error(`contract does not exist`, {
         username: req.params.username,
         name: req.body.name,
       });
