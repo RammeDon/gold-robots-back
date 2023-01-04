@@ -1,52 +1,57 @@
 const mongoose = require('mongoose');
 
 const contractSchema = mongoose.Schema({
+    adminClients: {
+        type: Number,
+        required: true
+    },
     username: {
         type: String,
         required: true
     },
-    investmentAmount: {
+    ammount: {
         type: String,
         default: "0"
     },
-    contractType: {
-        type: String,
-        required : true
-    },
-    depositeAmmount: {
-        type: Number,
-        default: 0
-    },
-    minDeposite:{
-        type: Number,
-        default: 0
-    },
-    startDate: {
+    color: {
         type: String,
         default: ""
     },
-    duration: {
+    date: {
+        type: String,
+        default: "0000-00-00"
+    },
+    garantiePrecent:{
         type: Number,
+        default: 0
+    },
+    level: {
+        type: [String],
+        default: ""
+    },
+    maxTradeDays: {
+        type: Number,
+        default: 0
+    },
+    minDeposite: {
+        type: String,
         default: 0
     },
     minProfit: {
         type: Number,
         default: 0
     },
+    minDuration: {
+        type: Number,
+        default: 0
+    },
+    name: {
+        type: String,
+        default: 0
+    },
     profitSharing: {
         type: Number,
         default: 0
-    },
-    maxTradeDays: {
-        type: Number,
-        default: 0
-    },
-    adminClient: {
-        type: String
-    },
-    personalSettings: {
-        type: Object,
-        default: {leverage: "100", tradingTimeFrame: "1 min", addExtraDays: "0 D", timeRange: "Istanbul time", maxUsageDeposite: "0 %"}
     }
 }, {collection: "contracts"});
 

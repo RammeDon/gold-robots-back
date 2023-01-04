@@ -11,7 +11,6 @@ const accountSchema = mongoose.Schema({
     accountNumbers: {
         type: [String],
         default: []
-
     },
     swiftCode: {
         type: [String],
@@ -46,7 +45,8 @@ const accountSchema = mongoose.Schema({
         default: 0
     },
     newTrades: {
-        type: Number
+        type: Number,
+        default:0
     },
     todayMoney: {
         type: Number,

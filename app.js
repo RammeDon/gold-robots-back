@@ -10,6 +10,7 @@ const IMAGE = require("./api/imageRouter.js");
 const CONTRACT = require("./api/contractRouter.js");
 const ADMIN = require("./api/adminRouter.js");
 const PAYMENTHISTORY = require("./api/paymentHistoryRouter.js");
+const EMAIL = require("./api/emailRouter.js");
 const cors = require("cors");
 
 
@@ -56,6 +57,7 @@ app.use(
 app.use("/api/paymenthistories", PAYMENTHISTORY);
 app.use("/api/contracts", CONTRACT);
 app.use("/api/accounts", ACCOUNT);
+app.use("/api/emails", EMAIL);
 app.use("/api/images", IMAGE);
 app.use("/api/admins", ADMIN);
 app.use("/api/users", USER);

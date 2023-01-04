@@ -50,16 +50,17 @@ ROUTER.post('/', async (req, res) => {
     try {
         const contract = new Contract({
             username: req.body.username,
-            investmentAmount: req.body.investmentAmount,
-            contractType: req.body.contractType,
-            depositeAmmount: req.body.depositeAmmount,
-            startDate: req.body.startDate,
-            duration: req.body.duration,
-            minProfit: req.body.minProfit,
-            profitSharing: req.body.profitSharing,
+            ammount: req.body.ammount,
+            color: req.body.color,
+            date: req.body.date,
+            garantiePrecent: req.body.garantiePrecent,
+            level: req.body.level,
             maxTradeDays: req.body.maxTradeDays,
-            adminClient: req.body.adminClient,
-            personalSettings: req.body.personalSettings
+            minProfit: req.body.minProfit,
+            name: req.body.name,
+            minDuration: req.body.minDuration,
+            minDeposite: req.body.profitSharing,
+            adminClients: req.body.adminClients
         });
 
         const foundContract = await Contract.findOne({ _id: req.body.id });
@@ -79,16 +80,6 @@ ROUTER.put("/:id", async (req, res) => {
         if (!contract) {
             throw new Error("contract does not exist");
         }
-        contract.username = req.body.username,
-            contract.investmentAmount = req.body.investmentAmount,
-            contract.contractType =  req.body.contractType,
-            contract.depositeAmmount = req.body.depositeAmmount,
-            contract.startDate = req.body.startDate,
-            contract.duration = req.body.duration,
-            contract.minProfit = req.body.minProfit,
-            contract.profitSharing = req.body.profitSharing,
-            contract.maxTradeDays = req.body.maxTradeDays,
-            contract.adminClient = req.body.adminClient,
             contract.personalSettings = req.body.personalSettings
 
             await contract.save();
