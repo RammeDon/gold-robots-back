@@ -5,10 +5,6 @@ const paymentHistorySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    accountID: {
-        type: String,
-        required: true
-    },
     date: {
         type: Date,
         default: Date.now
@@ -23,7 +19,8 @@ const paymentHistorySchema = mongoose.Schema({
         type: String
     },
     status: {
-        type: String
+        type: String,
+        default: "pending"
     }
 }, {collection: "paymentHistories"})
 

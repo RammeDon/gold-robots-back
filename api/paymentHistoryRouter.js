@@ -17,10 +17,10 @@ ROUTER.get('/', async (_, res) => {
 
 
 // get an payment history
-ROUTER.get("/:id", async (req, res) => {
+ROUTER.get("/:username", async (req, res) => {
 
     try {
-      const paymentHistory = await PaymentHistory.findOne({ _id: req.params.id });
+      const paymentHistory = await PaymentHistory.find({ username: req.params.username });
       if (!paymentHistory) throw new Error("The id does not have a paymentHistory");
   
       res.send(paymentHistory);
@@ -37,12 +37,10 @@ ROUTER.post('/', async (req, res) => {
     try {
         const paymentHistory = new PaymentHistory({
             username: req.body.username,
-            accountID: req.body.accountID,
             date: req.body.date,
             ammount: req.body.ammount,
             paymentType: req.body.paymentType,
-            paymentSystem: req.body.paymentSystem,
-            status: req.body.status
+            paymentSystem: req.body.paymentSystem
         });
 
         const foundPaymentHistory = await PaymentHistory.findOne({ _id: req.body.id });
@@ -55,18 +53,12 @@ ROUTER.post('/', async (req, res) => {
 });
 
 // update a contract
-ROUTER.put("/:id", async (req, res) => {
+ROUTER.put("/:username", async (req, res) => {
     try {
-        const paymentHistory = await PaymentHistory.findOne({ _id: req.params.id });
+        const paymentHistory = await PaymentHistory.findOne({ username: req.params.username });
         if (!user) {
             throw new Error("payment History does not exist");
         }
-        paymentHistory.username = req.body.username,
-            paymentHistory.accountID =  req.body.accountID,
-            paymentHistory.date = req.body.date,
-            paymentHistory.ammount = req.body.ammount,
-            paymentHistory.paymentType = paymentType,
-            paymentHistory.paymentSystem = req.body.paymentSystem,
             paymentHistory.status = req.body.status
 
             await paymentHistory.save();
