@@ -37,7 +37,6 @@ ROUTER.post('/', async (req, res) => {
     try {
         const paymentHistory = new PaymentHistory({
             username: req.body.username,
-            date: req.body.date,
             ammount: req.body.ammount,
             paymentType: req.body.paymentType,
             paymentSystem: req.body.paymentSystem

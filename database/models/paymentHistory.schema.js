@@ -21,7 +21,7 @@ const paymentHistorySchema = mongoose.Schema({
     status: {
         type: String,
         default: "pending"
-    }
+    }  
 }, {collection: "paymentHistories"})
 
 module.exports = mongoose.model("PaymentHistories", paymentHistorySchema)
