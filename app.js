@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const DATABASE = require("./database/connect");
 const path = require("path");
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8092;
 const ACCOUNT = require("./api/accountRouter.js");
 const USER = require("./api/userRouter.js");
 const IMAGE = require("./api/imageRouter.js");
@@ -23,6 +23,8 @@ app.use(
         "http://localhost:3001",
         "http://localhost:3500",
         "https://www.bulima.co",
+        "https://adorable-snickerdoodle-5a5d3e.netlify.app/",
+        'https://bulima.com'
         // "*"
       ];
       if (!origin) return callback(null, true);
