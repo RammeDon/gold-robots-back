@@ -15,40 +15,16 @@ const cors = require("cors");
 
 
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "http://localhost:3500",
-        "https://www.bulima.co",
-        "https://adorable-snickerdoodle-5a5d3e.netlify.app/",
-        'https://bulima.com'
-        // "*"
-      ];
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        return callback(
-          new Error(
-            `The CORS policy of this site does not allow access form specified origin.${origin}`,
-            false
-          )
-        );
-      }
-      return callback(null, true);
-    },
-  })
-);
+app.use(cors())
 
-app.use(
-  function(res, _, next) {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
-      next();
-  }
-)
+// app.use(
+//   function(res, _, next) {
+//       res.header('Access-Control-Allow-Origin', '*');
+//       res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
+//       next();
+//   }
+// )
 app.use(express.json()); // middleware
 app.use(
   "/",
