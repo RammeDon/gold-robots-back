@@ -17,11 +17,11 @@ const accountSchema = mongoose.Schema({
         default: []
     },
     country: {
-        type: [Number],
+        type: [String],
         default: []
     },
     currency: {
-        type: [Number],
+        type: [String],
         default: []
     },
     balance: {

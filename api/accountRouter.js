@@ -71,19 +71,11 @@ ROUTER.put("/:username", async (req, res) => {
         if (!account) {
             throw new Error("Account does not exist");
         }
-        account.username = req.body.username,
             account.bankNames =  req.body.bankNames,
             account.accountNumbers = req.body.accountNumbers,
             account.swiftCode = req.body.swiftCode,
             account.country = req.body.country,
             account.currency = req.body.currency,
-            account.balance = req.body.balance,
-            account.depositeAccount = req.body.depositeAccount,
-            account.paymentHistory = req.body.paymentHistory,
-            account.contractType= req.body.contractType,
-            account.todayTrades= req.body.todayTrades,
-            account.todayMoney= req.body.todayMoney,
-            account.percentageInTrades= req.body.percentageInTrades,
 
             await account.save();
         
